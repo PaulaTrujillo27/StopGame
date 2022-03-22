@@ -38,6 +38,6 @@
       <Label fx:id="opponentLocationResult" layoutX="431.0" layoutY="249.0" text="Texto (50)" />
       <Label fx:id="ownObjectResult" layoutX="275.0" layoutY="309.0" text="Texto (100)" />
       <Label fx:id="opponentObjectResult" layoutX="431.0" layoutY="309.0" text="Texto (50)" />
-      <Button fx:id="finishBtn" layoutX="269.0" layoutY="439.0" mnemonicParsing="false" text="Finalizar" />
+      <Button fx:id="finishBtn" layoutX="269.0" layoutY="439.0" mnemonicParsing="false" onAction="#finishAction" text="Finalizar" />
    </children>
 </AnchorPane>
