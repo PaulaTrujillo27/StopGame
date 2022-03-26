@@ -1,34 +1,32 @@
 package main;
 
-import java.io.IOException;
-
+import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import ui.VentanaA;
 
-public class Main {
-
+public class Main extends Application{
+	private VentanaA va;
 	public static void main(String[] args){
-		new Main();
+		launch(args);
 		
 
 	}
-	public Main() {
-		FXMLLoader loader = new FXMLLoader(getClass().getResource("ui/VentanaA.fxml"));
-		try {
-			Parent p;
-			p = (Parent) loader.load();
-			Scene scene = new Scene(p);
-			Stage stage = new Stage();
-			
-			stage.setScene(scene);
-			stage.show();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+
+	@Override
+	public void start(Stage primaryStage) throws Exception {
+		FXMLLoader loader = new FXMLLoader(getClass().getResource("/ui/VentanaA.fxml"));
+		va = new VentanaA(primaryStage);
+		loader.setController(va);
+		Parent p = (Parent) loader.load();
+		Scene scene = new Scene(p);
+		primaryStage.setScene(scene);
+		primaryStage.show();
+		primaryStage.setResizable(false);
 		
 	}
+	
 
 }

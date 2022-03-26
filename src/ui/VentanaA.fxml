@@ -17,7 +17,7 @@
       <Label layoutX="44.0" layoutY="161.0" text="Animal" AnchorPane.leftAnchor="32.0" AnchorPane.topAnchor="160.0" />
       <Label layoutX="44.0" layoutY="240.0" text="País o ciudad" AnchorPane.leftAnchor="32.0" AnchorPane.topAnchor="220.0" />
       <Label layoutX="44.0" layoutY="306.0" text="Cosa" AnchorPane.leftAnchor="32.0" AnchorPane.topAnchor="280.0" />
-      <Button fx:id="stopBtn" layoutX="151.0" layoutY="352.0" mnemonicParsing="false" text="¡STOP!" AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="100.0" AnchorPane.topAnchor="360.0">
+      <Button fx:id="stopBtn" layoutX="151.0" layoutY="352.0" mnemonicParsing="false" onAction="#stopAction" text="¡STOP!" AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="100.0" AnchorPane.topAnchor="360.0">
          <font>
             <Font size="24.0" />
          </font>

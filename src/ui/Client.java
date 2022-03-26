@@ -14,7 +14,7 @@ public class Client extends Application{
 
 	@Override
 	public void start(Stage primaryStage) throws Exception {
-		FXMLLoader loader = new FXMLLoader(Client.class.getResource("VentanaB.fxml"));
+		FXMLLoader loader = new FXMLLoader(Client.class.getResource("VentanaA.fxml"));
 		Parent p = (Parent) loader.load();
 		
 		Scene scene = new Scene(p);

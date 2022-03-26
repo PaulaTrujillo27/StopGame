@@ -11,7 +11,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-import main.Main;
 
 public class VentanaA {
 
@@ -32,22 +31,24 @@ public class VentanaA {
 
     @FXML
     private Label title;
-
+    
+    private VentanaB vb;
+    
+    private Stage primaryStage;
+    
+    public VentanaA(Stage stage) {
+    	vb = new VentanaB();
+    	primaryStage=stage;
+    }
 	@FXML
-	void stopAction(ActionEvent event) {
-		FXMLLoader loader = new FXMLLoader(Main.class.getResource("ui/VentanaB.fxml"));
-		
-		Parent p;
-		try {
-			p=(Parent)loader.load();
-			Scene scene = new Scene(p);
-			Stage stage = new Stage();
-			stage.setScene(scene);
-			stage.show();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+	void stopAction(ActionEvent event) throws IOException {
+		FXMLLoader loader = new FXMLLoader(getClass().getResource("VentanaB.fxml"));
+		loader.setController(vb);
+		Parent p = (Parent) loader.load();
+		Scene scene = new Scene(p);
+		primaryStage.setScene(scene);
+		primaryStage.show();
+		primaryStage.setResizable(false);
 		
 		
 	}
