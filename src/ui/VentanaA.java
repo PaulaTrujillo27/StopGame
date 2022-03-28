@@ -36,10 +36,14 @@ public class VentanaA {
     
     private Stage primaryStage;
     
-    public VentanaA(Stage stage) {
-    	vb = new VentanaB();
-    	primaryStage=stage;
+    public VentanaA(VentanaB vb) {
+    this.vb = vb;
     }
+    
+    public void setStage(Stage s) {
+    	primaryStage = s;
+    }
+    
 	@FXML
 	void stopAction(ActionEvent event) throws IOException {
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("VentanaB.fxml"));

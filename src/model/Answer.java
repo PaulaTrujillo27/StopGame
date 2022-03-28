@@ -1,7 +1,9 @@
+package model;
 
 
-public class Game {
+public class Answer {
 	
+	public String type = "Answer";
 	private String name;
 	private String lastName;
 	private String animal;
@@ -9,8 +11,7 @@ public class Game {
 	private String city;
 	private String thing;
 	
-	public Game(char letter, String name, String lastName, String animal, String country, String city, String thing){
-		this.letter = letter;
+	public Answer(String name, String lastName, String animal, String country, String city, String thing){
 		this.name = name;
 		this.lastName = lastName;
 		this.animal = animal;
@@ -18,16 +19,7 @@ public class Game {
 		this.city = city;
 		this.thing= thing;
 	}
-	
 
-	private char letter;
-	public char getLetter() {
-		return letter;
-	}
-
-	public void setLetter(char letter) {
-		this.letter = letter;
-	}
 
 	public String getName() {
 		return name;

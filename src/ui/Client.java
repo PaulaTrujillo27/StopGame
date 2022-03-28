@@ -7,6 +7,15 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 public class Client extends Application{
+	
+	private VentanaA controllerA;
+	private VentanaB controllerB;
+
+	public Client() {
+		controllerB = new VentanaB();
+		controllerA = new VentanaA(controllerB);
+	
+	}
 
 	public static void main(String[] args) {
 		launch(args);
@@ -14,13 +23,14 @@ public class Client extends Application{
 
 	@Override
 	public void start(Stage primaryStage) throws Exception {
+		controllerA.setStage(primaryStage);
 		FXMLLoader loader = new FXMLLoader(Client.class.getResource("VentanaA.fxml"));
-		Parent p = (Parent) loader.load();
+		loader.setController(controllerA);
+		Parent p = loader.load();
 		
 		Scene scene = new Scene(p);
-		Stage stage = new Stage();
-		stage.setScene(scene);
-		stage.show();
+		primaryStage.setScene(scene);
+		primaryStage.show();
 	
 	}
 
