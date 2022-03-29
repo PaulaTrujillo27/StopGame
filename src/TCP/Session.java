@@ -8,6 +8,8 @@ import java.io.OutputStreamWriter;
 import java.net.Socket;
 import java.util.UUID;
 
+import events.SendMessage;
+
 public class Session extends Thread {
 
 	private Socket socket;
@@ -15,7 +17,17 @@ public class Session extends Thread {
 	
 	private BufferedReader reader;
 	private BufferedWriter writer;
+	private String m= " ";
+	private SendMessage send;
 	
+	public SendMessage getSend() {
+		return send;
+	}
+
+	public void setSend(SendMessage send) {
+		this.send = send;
+	}
+
 	private OnMessageListener listener;
 
 	public Session(Socket socket) {
@@ -44,8 +56,31 @@ public class Session extends Thread {
 	
 	
 	public void sendMessage(String msg) throws IOException {
-		writer.write(msg+"\n");
-		writer.flush();
+		new Thread(() -> {
+			try {
+				writer.write(msg+"\n");
+				writer.flush();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}).start();	
+
+	}
+	
+	
+	public String readMessage() {
+		try {
+			String message= " ";
+		message = reader.readLine();
+		m= send.messageSend(message, this);		
+		System.out.println(message);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return m;
 	}
 	
 	public void setListener(OnMessageListener listener) {

@@ -5,44 +5,68 @@ import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.ArrayList;
 
+import model.Match;
+
 public class Receive implements Session.OnMessageListener{
 
 	public static void main(String[] args) throws IOException {
-		new Receive();
+		Receive receive = Receive.getInstace();
+		receive.StartServer();
 	}
 
 	private ArrayList<Session> sessions;
+	private static Receive instance;
 
-	public Receive() throws IOException {
-		sessions = new ArrayList<>();
-		ServerSocket server = new ServerSocket(6000);
-		while (true) {
-			System.out.println("Esperando cliente...");
-			Socket socket = server.accept();
-			System.out.println("Nuevo cliente conectado!");
-			System.out.println("Entró en el puerto: " + socket.getPort());
-			Session session = new Session(socket);
-			session.setListener(this);
-			session.start();
-			sessions.add(session);
-		}
+	private Receive() throws IOException {
 	}
+	
+	public void StartServer() {
+		sessions = new ArrayList<>();
+		ServerSocket server;
+		try {
+			server = new ServerSocket(6000);
+			while (true) {
+				System.out.println("Esperando cliente...");
+				Socket socket = server.accept();
+				System.out.println("Nuevo cliente conectado!");
+				System.out.println("Entró en el puerto: " + socket.getPort());
+				Session session = new Session(socket);
+				session.setListener(this);
+				session.start();
+				sessions.add(session);
+				
+				if(sessions.size()%2==0) {
+					new Thread(() -> {
+						Match match = new Match(sessions.get(sessions.size()-2),sessions.get(sessions.size()-1));
+					}).start();	
+				
+				}
+			}
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+	}
+	
+	public static Receive getInstace() {
+		if(instance==null) {
 
-	@Override
-	public void onMessage(String line) {
-		if(line.startsWith("ALL::")) {
 			try {
-				sendBroadCast(line);
+				instance = new Receive();
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
+		return instance;
 	}
 	
-	public void sendBroadCast(String line) throws IOException {
-		for(Session s : sessions) {
-			s.sendMessage(line);
-		}
+
+	@Override
+	public void onMessage(String line) {
+		// TODO Auto-generated method stub
+		
 	}
 }

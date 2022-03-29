@@ -15,7 +15,79 @@ public class VentanaB {
 	    @FXML
 	    private Label opponentAnimalResult;
 
-	    @FXML
+	    public Button getFinishBtn() {
+			return finishBtn;
+		}
+
+		public void setFinishBtn(Button finishBtn) {
+			this.finishBtn = finishBtn;
+		}
+
+		public Label getOpponentAnimalResult() {
+			return opponentAnimalResult;
+		}
+
+		public void setOpponentAnimalResult(Label opponentAnimalResult) {
+			this.opponentAnimalResult = opponentAnimalResult;
+		}
+
+		public Label getOpponentLocationResult() {
+			return opponentLocationResult;
+		}
+
+		public void setOpponentLocationResult(Label opponentLocationResult) {
+			this.opponentLocationResult = opponentLocationResult;
+		}
+
+		public Label getOpponentNameResult() {
+			return opponentNameResult;
+		}
+
+		public void setOpponentNameResult(Label opponentNameResult) {
+			this.opponentNameResult = opponentNameResult;
+		}
+
+		public Label getOpponentObjectResult() {
+			return opponentObjectResult;
+		}
+
+		public void setOpponentObjectResult(Label opponentObjectResult) {
+			this.opponentObjectResult = opponentObjectResult;
+		}
+
+		public Label getOwnAnimalResult() {
+			return ownAnimalResult;
+		}
+
+		public void setOwnAnimalResult(Label ownAnimalResult) {
+			this.ownAnimalResult = ownAnimalResult;
+		}
+
+		public Label getOwnLocationResult() {
+			return ownLocationResult;
+		}
+
+		public void setOwnLocationResult(Label ownLocationResult) {
+			this.ownLocationResult = ownLocationResult;
+		}
+
+		public Label getOwnNameResult() {
+			return ownNameResult;
+		}
+
+		public void setOwnNameResult(Label ownNameResult) {
+			this.ownNameResult = ownNameResult;
+		}
+
+		public Label getOwnObjectResult() {
+			return ownObjectResult;
+		}
+
+		public void setOwnObjectResult(Label ownObjectResult) {
+			this.ownObjectResult = ownObjectResult;
+		}
+
+		@FXML
 	    private Label opponentLocationResult;
 
 	    @FXML

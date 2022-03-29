@@ -6,18 +6,14 @@ public class Answer {
 	
 	public String type = "Answer";
 	private String name;
-	private String lastName;
 	private String animal;
 	private String country;
-	private String city;
 	private String thing;
 	
-	public Answer(String name, String lastName, String animal, String country, String city, String thing){
+	public Answer(String name, String animal, String country, String thing){
 		this.name = name;
-		this.lastName = lastName;
 		this.animal = animal;
 		this.country = country;
-		this.city = city;
 		this.thing= thing;
 	}
 
@@ -30,13 +26,6 @@ public class Answer {
 		this.name = name;
 	}
 
-	public String getLastName() {
-		return lastName;
-	}
-
-	public void setLastName(String lastName) {
-		this.lastName = lastName;
-	}
 
 	public String getAnimal() {
 		return animal;
@@ -54,14 +43,7 @@ public class Answer {
 		this.country = country;
 	}
 
-	public String getCity() {
-		return city;
-	}
-
-	public void setCity(String city) {
-		this.city = city;
-	}
-
+	
 	public String getThing() {
 		return thing;
 	}
