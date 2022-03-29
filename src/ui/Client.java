@@ -53,14 +53,7 @@ public class Client extends Application{
 			controllerA.setWriter(writer);
 			controllerA.setReader(reader);
 			controllerA.readMessage();
-			/*FXMLLoader loader = new FXMLLoader(Client.class.getResource("VentanaA.fxml"));
-			loader.setController(controllerA);
-			Parent p = loader.load();
 			
-			Scene scene = new Scene(p);
-			primaryStage.setScene(scene);
-			primaryStage.show();
-			*/
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

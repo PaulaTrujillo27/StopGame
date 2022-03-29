@@ -109,6 +109,7 @@ public class VentanaA{
 			String save;
 				try {
 					save = reader.readLine();
+					System.out.println("Leyendo " +save);
 					toDo(save);
 				} catch (IOException e) {
 					// TODO Auto-generated catch block
@@ -146,9 +147,10 @@ public class VentanaA{
 		break;
 		case "Answer" : Answer rivalAnswer = gson.fromJson(line, Answer.class);
 		if(ownAnswer==null) {
-			Answer ownAnswer = new Answer(nameAnswer.getText(), animalAnswer.getText(),locationAnswer.getText(), objectAnswer.getText());
+			ownAnswer = new Answer(nameAnswer.getText(), animalAnswer.getText(),locationAnswer.getText(), objectAnswer.getText());
 			String j = gson.toJson(ownAnswer);
 			sendMessage(j);
+			readMessage();
 		}
 			Platform.runLater(() -> {
 			FXMLLoader loader = new FXMLLoader(getClass().getResource("VentanaB.fxml"));

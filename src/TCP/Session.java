@@ -8,32 +8,18 @@ import java.io.OutputStreamWriter;
 import java.net.Socket;
 import java.util.UUID;
 
+import events.ReceiveMessage;
 import events.SendMessage;
 
-public class Session extends Thread {
+public class Session extends Thread implements ReceiveMessage,SendMessage{
 
-	private Socket socket;
-	private String id;
-	
+	private Socket socket;	
 	private BufferedReader reader;
 	private BufferedWriter writer;
-	private String m= " ";
-	private SendMessage send;
 	
-	public SendMessage getSend() {
-		return send;
-	}
-
-	public void setSend(SendMessage send) {
-		this.send = send;
-	}
-
-	private OnMessageListener listener;
 
 	public Session(Socket socket) {
 		this.socket = socket;
-		id = UUID.randomUUID().toString();
-
 	}
 
 	@Override
@@ -42,52 +28,38 @@ public class Session extends Thread {
 			writer = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream()));
 			reader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
 			
-			while(true) {
-				String line = reader.readLine();
-				System.out.println(line);
-				listener.onMessage(line);
-			}
-			
 		} catch (IOException ex) {
 			ex.printStackTrace();
 		}
 	}
 	
 	
-	
-	public void sendMessage(String msg) throws IOException {
+
+	@Override
+	public void messageSend(String message) {
 		new Thread(() -> {
 			try {
-				writer.write(msg+"\n");
+				writer.write(message+"\n");
 				writer.flush();
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-		}).start();	
-
+		}).start();
+	
 	}
-	
-	
-	public String readMessage() {
+
+	@Override
+	public String messageReceive() {
+		String message= "";
 		try {
-			String message= " ";
 		message = reader.readLine();
-		m= send.messageSend(message, this);		
 		System.out.println(message);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
-		return m;
-	}
-	
-	public void setListener(OnMessageListener listener) {
-		this.listener = listener;
-	}
-	
-	public interface OnMessageListener{
-		void onMessage(String line);
+		return message;
 	}
 }

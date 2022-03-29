@@ -7,7 +7,7 @@ import java.util.ArrayList;
 
 import model.Match;
 
-public class Receive implements Session.OnMessageListener{
+public class Receive{
 
 	public static void main(String[] args) throws IOException {
 		Receive receive = Receive.getInstace();
@@ -31,7 +31,6 @@ public class Receive implements Session.OnMessageListener{
 				System.out.println("Nuevo cliente conectado!");
 				System.out.println("Entró en el puerto: " + socket.getPort());
 				Session session = new Session(socket);
-				session.setListener(this);
 				session.start();
 				sessions.add(session);
 				
@@ -64,9 +63,5 @@ public class Receive implements Session.OnMessageListener{
 	}
 	
 
-	@Override
-	public void onMessage(String line) {
-		// TODO Auto-generated method stub
-		
-	}
+	
 }
