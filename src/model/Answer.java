@@ -1,5 +1,6 @@
 package model;
 
+import java.util.Random;
 
 public class Answer {
 	
@@ -69,6 +70,7 @@ public class Answer {
 		this.thing = thing;
 	}
 
+	
 	
 	
 }

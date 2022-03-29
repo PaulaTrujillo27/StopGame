@@ -18,6 +18,7 @@ public class Sender {
 	private static Scanner scanner;
 	private static BufferedWriter bwriter;
 	public static void main(String[] args) {
+		
 		// El papel del cliente es enviar una solicitud
 		
 		scanner = new Scanner(System.in);
