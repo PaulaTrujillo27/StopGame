@@ -84,7 +84,7 @@ public class VentanaA{
 		
 	}else {
 		Gson gson = new Gson();
-		Answer ownAnswer = new Answer(nameAnswer.getText(), animalAnswer.getText(),locationAnswer.getText(), objectAnswer.getText());
+		ownAnswer = new Answer(nameAnswer.getText(), animalAnswer.getText(),locationAnswer.getText(), objectAnswer.getText());
 		String j = gson.toJson(ownAnswer);
 		sendMessage(j);
 		
@@ -145,7 +145,7 @@ public class VentanaA{
 			
 		});	
 		break;
-		case "Answer" : Answer rivalAnswer = gson.fromJson(line, Answer.class);
+		case "Answer" : rivalAnswer = gson.fromJson(line, Answer.class);
 		if(ownAnswer==null) {
 			ownAnswer = new Answer(nameAnswer.getText(), animalAnswer.getText(),locationAnswer.getText(), objectAnswer.getText());
 			String j = gson.toJson(ownAnswer);
@@ -160,14 +160,7 @@ public class VentanaA{
 				p = (Parent) loader.load();
 				Scene scene = new Scene(p);
 				primaryStage.setScene(scene);
-				vb.getOpponentAnimalResult().setText(rivalAnswer.getAnimal());
-				vb.getOpponentLocationResult().setText(rivalAnswer.getCountry());
-				vb.getOpponentNameResult().setText(rivalAnswer.getName());
-				vb.getOpponentObjectResult().setText(rivalAnswer.getThing());
-				vb.getOwnAnimalResult().setText(ownAnswer.getAnimal());
-				vb.getOwnLocationResult().setText(ownAnswer.getCountry());
-				vb.getOwnNameResult().setText(ownAnswer.getName());
-				vb.getOwnObjectResult().setText(ownAnswer.getThing());
+				calculateScore();
 				primaryStage.show();
 				primaryStage.setResizable(false);
 			} catch (IOException e) {
@@ -181,13 +174,53 @@ public class VentanaA{
 		}
 	}
 
-
-	public void initialize(URL arg0, ResourceBundle arg1) {
-		
-		
-
+	public void calculateScore() {
+		String[] answer = new String[2];
+		int totalOpponent=0;
+		int totalOwn=0;
+		answer=calculateScore(ownAnswer.getAnimal(),rivalAnswer.getAnimal());
+		vb.getOpponentAnimalResult().setText(rivalAnswer.getAnimal()+" "+answer[1]);
+		vb.getOwnAnimalResult().setText(ownAnswer.getAnimal()+" "+answer[0]);
+		totalOpponent+=Integer.valueOf(answer[1]);
+		totalOwn+=Integer.valueOf(answer[0]);
+		answer=calculateScore(ownAnswer.getCountry(),rivalAnswer.getCountry());
+		vb.getOpponentLocationResult().setText(rivalAnswer.getCountry()+" "+answer[1]);
+		vb.getOwnLocationResult().setText(ownAnswer.getCountry()+" "+answer[0]);
+		totalOpponent+=Integer.valueOf(answer[1]);
+		totalOwn+=Integer.valueOf(answer[0]);
+		answer=calculateScore(ownAnswer.getName(),rivalAnswer.getName());
+		vb.getOpponentNameResult().setText(rivalAnswer.getName()+" "+answer[1]);
+		vb.getOwnNameResult().setText(ownAnswer.getName()+" "+answer[0]);
+		totalOpponent+=Integer.valueOf(answer[1]);
+		totalOwn+=Integer.valueOf(answer[0]);
+		answer=calculateScore(ownAnswer.getThing(),rivalAnswer.getThing());
+		vb.getOpponentObjectResult().setText(rivalAnswer.getThing()+" "+answer[1]);
+		vb.getOwnObjectResult().setText(ownAnswer.getThing()+" "+answer[0]);
+		totalOpponent+=Integer.valueOf(answer[1]);
+		totalOwn+=Integer.valueOf(answer[0]);
+		vb.setOpponentTotal(totalOpponent+"");
+		vb.setOwnTotal(totalOwn+"");
 	}
-
 	
+	private String[] calculateScore(String answer1, String answer2) {
+		String[] answer = new String[2];
+		if((answer1.equals("")||answer1.equals(" "))&&(answer2.equals("")||answer2.equals(" "))) {
+			answer[0] = "0";
+			answer[1]="0";
+		}else if((answer1.equals("")||answer1.equals(" "))){
+			answer[0]="0";
+			answer[1]="100";
+		}else if((answer2.equals("")||answer2.equals(" "))) {
+			answer[0]= "100";
+			answer[1]= "0";
+		}else if(answer1.equalsIgnoreCase(answer2)) {
+			answer[0]="50";
+			answer[1]="50";
+		}else {
+			answer[0]="100";
+			answer[1]="100";
+		}
+		return answer;
+	}
 
 }

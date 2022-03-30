@@ -78,6 +78,7 @@ public class Match{
         ventanaA.start();
         ventanaB.start();
     }
+	
 
 	
 	

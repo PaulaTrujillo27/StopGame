@@ -12,6 +12,33 @@ public class VentanaB {
 	 @FXML
 	    private Button finishBtn;
 
+	 @FXML
+	    private Label opponentLocationResult;
+
+	    @FXML
+	    private Label opponentNameResult;
+
+	    @FXML
+	    private Label opponentObjectResult;
+
+	    @FXML
+	    private Label ownAnimalResult;
+
+	    @FXML
+	    private Label ownLocationResult;
+
+	    @FXML
+	    private Label ownNameResult;
+
+	    @FXML
+	    private Label ownObjectResult;
+	    
+	    @FXML
+	    private Label opponentTotal;
+
+	    @FXML
+	    private Label ownTotal;
+	
 	    @FXML
 	    private Label opponentAnimalResult;
 
@@ -87,33 +114,22 @@ public class VentanaB {
 			this.ownObjectResult = ownObjectResult;
 		}
 
-		@FXML
-	    private Label opponentLocationResult;
-
-	    @FXML
-	    private Label opponentNameResult;
-
-	    @FXML
-	    private Label opponentObjectResult;
-
-	    @FXML
-	    private Label ownAnimalResult;
-
-	    @FXML
-	    private Label ownLocationResult;
-
-	    @FXML
-	    private Label ownNameResult;
-
-	    @FXML
-	    private Label ownObjectResult;
-	
+		
 	    @FXML
 	    void finishAction(ActionEvent event) {
 	    	Node source = (Node) event.getSource();
 	    	Stage stage = (Stage) source.getScene().getWindow();
 	    	stage.close();
 	    }
+
+		
+		public void setOpponentTotal(String opponentTotal) {
+			this.opponentTotal.setText(opponentTotal);
+		}
+
+		public void setOwnTotal(String ownTotal) {
+			this.ownTotal.setText(ownTotal);
+		}
 	
 	
 	
